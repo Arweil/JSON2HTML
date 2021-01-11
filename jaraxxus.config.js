@@ -10,7 +10,7 @@ const jaraxxusConfig = {
   },
   indexPath: 'public/index.html',
   needPolyfill: true,
-  publicPath: `/`,
+  publicPath: `/JSON2HTML`,
   assetsDir: 'static',
   outputDir: 'docs',
   srcDir: 'src', // 开发目录
