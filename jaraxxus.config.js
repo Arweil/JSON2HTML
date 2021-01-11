@@ -12,7 +12,7 @@ const jaraxxusConfig = {
   needPolyfill: true,
   publicPath: `/`,
   assetsDir: 'static',
-  outputDir: 'dist',
+  outputDir: 'docs',
   srcDir: 'src', // 开发目录
   eslintConfigFile: undefined, // eslint.rules.js为根目录文件
   productionSourceMap: false,
