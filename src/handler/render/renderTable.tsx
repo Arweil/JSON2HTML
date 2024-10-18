@@ -1,15 +1,20 @@
 import * as React from "react";
-import { Table } from "antd";
+import { Table } from "@m-tools/antd-ext";
 
-function renderTable<T extends object>(data: {
-  columns: { dataIndex: string; title: string }[];
+function RenderTable<T extends object>(props: {
+  columns: { dataIndex: string; title: React.ReactNode }[];
   dataSource: T[];
 }) {
+  const [width, setWidth] = React.useState<number>(0);
+
   return (
     <Table
+      style={{ maxWidth: width }}
+      ref={(ele) => setWidth(ele?.nativeElement.parentElement?.offsetWidth || 0)}
       rowKey={(record, index) => index + "1"}
-      columns={data.columns}
-      dataSource={data.dataSource}
+      columns={props.columns}
+      dataSource={props.dataSource}
+      scroll={{ x: true }}
       pagination={{
         hideOnSinglePage: true
       }}
@@ -17,4 +22,4 @@ function renderTable<T extends object>(data: {
   );
 }
 
-export { renderTable };
+export { RenderTable };

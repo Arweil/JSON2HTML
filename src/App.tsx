@@ -73,7 +73,7 @@ export default function App() {
 
       <Modal
         title="数据"
-        visible={modalDataVisible}
+        open={modalDataVisible}
         onOk={() => {
           setBreadcrumbData([
             {
@@ -98,7 +98,7 @@ export default function App() {
 
       <Modal
         title="配置"
-        visible={modalConfigVisible}
+        open={modalConfigVisible}
         onOk={() => {
           setConfig(formatConfig(formatJSONData(modalConfigValue)));
           setModalConfigVisible(false);

@@ -24,7 +24,7 @@ function handleArray<T extends object>({
   currentKey: string;
   onViewDetail: (params: typeViewDetail) => void;
 }): {
-  columns: { dataIndex: string; title: string }[];
+  columns: { dataIndex: string; title: React.ReactNode }[];
   dataSource: T[];
 } {
   const col =
@@ -32,7 +32,7 @@ function handleArray<T extends object>({
   const columns = col.map((item) => {
     return {
       dataIndex: item,
-      title: (config[item] && config[item].title) || item,
+      title: React.createElement('span', { children: (config[item] && config[item].title) || item, style: { whiteSpace: 'nowrap' } }),
       render: (text: any, record: any, index: number) => {
         if (checkType(text) !== "Other") {
           return React.createElement(

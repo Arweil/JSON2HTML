@@ -5,15 +5,12 @@ import { checkType } from "../../utils";
 import { typeConfigParamsFinal } from "../formatConfig";
 import { typeViewDetail } from "../makeRenderData";
 
-function renderDescriptions({
-  data,
-  config,
-  onViewDetail
-}: {
+function RenderDescriptions(props: {
   data: { [key: string]: any };
   config: typeConfigParamsFinal;
   onViewDetail: (params: typeViewDetail) => void;
 }) {
+  const { data, config, onViewDetail } = props;
   return (
     <Descriptions bordered>
       {Object.entries(data).map(([key, value]) => {
@@ -22,7 +19,10 @@ function renderDescriptions({
             return value.title === key;
           });
           return (
-            <Descriptions.Item span={24} label={key}>
+            <Descriptions.Item
+              span={24}
+              label={<span style={{ whiteSpace: 'nowrap' }}>{key}</span>}
+            >
               {parseData({
                 data: value,
                 config,
@@ -34,7 +34,10 @@ function renderDescriptions({
           );
         } else {
           return (
-            <Descriptions.Item span={24} label={key}>
+            <Descriptions.Item
+              span={24}
+              label={<span style={{ whiteSpace: 'nowrap' }}>{key}</span>}
+            >
               {value}
             </Descriptions.Item>
           );
@@ -44,4 +47,4 @@ function renderDescriptions({
   );
 }
 
-export { renderDescriptions };
+export { RenderDescriptions };

@@ -1,7 +1,8 @@
+import React from 'react';
 import { checkType } from "../utils";
 import { handleArray, handleObject, typeViewDetail } from "./makeRenderData";
-import { renderTable } from "./render/renderTable";
-import { renderDescriptions } from "./render/renderDescriptions";
+import { RenderTable } from "./render/renderTable";
+import { RenderDescriptions } from "./render/renderDescriptions";
 import { typeConfigParamsFinal } from "./formatConfig";
 
 function parseData({
@@ -28,21 +29,27 @@ function parseData({
           currentKey: currentKey || ""
         });
 
-        return renderTable(formatedData);
+        return <RenderTable {...formatedData} />;
       } else {
         return "(Empty List)";
       }
     case "Object":
+      if (Object.keys(data).length === 0) {
+        return '(Empty Object)';
+      }
+
       const formatedData = handleObject({
         dataSource: data,
         config
       });
 
-      return renderDescriptions({
-        data: formatedData,
-        config,
-        onViewDetail
-      });
+      return (
+        <RenderDescriptions
+          data={formatedData}
+          config={config}
+          onViewDetail={onViewDetail}
+        />
+      );
     default:
       return data;
   }
